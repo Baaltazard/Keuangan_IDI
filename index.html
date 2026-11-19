@@ -61,14 +61,6 @@
         #ledger-tbody tr:hover { background-color: #F0FDFA !important; }
         #ledger-tbody td { vertical-align: top; line-height: 1.45; }
 
-        /* Tombol aksi utama lebih menonjol di layar kecil */
-        @media (max-width: 640px) {
-            header .flex.flex-wrap.items-center.gap-2\.5 button[onclick*="openTxModal"] {
-                flex: 1 1 calc(50% - 0.5rem);
-                min-width: 140px;
-            }
-        }
-
         @media print {
             body {
                 background-color: #FFFFFF !important;
@@ -148,27 +140,11 @@
                     </div>
                 </div>
 
-                <!-- Tombol Aksi Cepat -->
-                <div class="flex flex-wrap items-center gap-2.5">
-                    <button onclick="syncFromSpreadsheet()" id="btn-sync" class="inline-flex items-center gap-1.5 px-3 py-2.5 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors border border-slate-200" title="Tarik data terbaru dari Google Spreadsheet">
+                <!-- Tombol Sinkron (tetap di header, ringkas) -->
+                <div class="flex flex-wrap items-center gap-2">
+                    <button onclick="syncFromSpreadsheet()" id="btn-sync" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors border border-slate-200" title="Tarik data terbaru dari Google Spreadsheet">
                         <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
-                        <span class="hidden sm:inline">Sinkronkan</span>
-                    </button>
-                    <!-- Tombol Uang Masuk — lebih besar & jelas -->
-                    <button onclick="openTxModal('masuk')" class="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md hover:shadow-lg transition-all ring-2 ring-emerald-200/70">
-                        <i data-lucide="arrow-down-circle" class="w-5 h-5 shrink-0"></i>
-                        <span class="flex flex-col items-start leading-tight text-left">
-                            <span class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wide opacity-90">Uang Masuk</span>
-                            <span class="text-xs sm:text-sm font-extrabold">Penerimaan</span>
-                        </span>
-                    </button>
-                    <!-- Tombol Uang Keluar — lebih besar & jelas -->
-                    <button onclick="openTxModal('keluar')" class="inline-flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl text-sm font-bold bg-rose-600 hover:bg-rose-700 text-white shadow-md hover:shadow-lg transition-all ring-2 ring-rose-200/70">
-                        <i data-lucide="arrow-up-circle" class="w-5 h-5 shrink-0"></i>
-                        <span class="flex flex-col items-start leading-tight text-left">
-                            <span class="text-[10px] sm:text-[11px] font-semibold uppercase tracking-wide opacity-90">Uang Keluar</span>
-                            <span class="text-xs sm:text-sm font-extrabold">Pengeluaran</span>
-                        </span>
+                        <span>Sinkronkan</span>
                     </button>
                 </div>
             </div>
@@ -314,6 +290,24 @@
 
         <!-- ==================== TAB 1: BUKU KAS UMUM ==================== -->
         <section id="view-bukukas" class="space-y-4">
+            <!-- Tombol Uang Masuk / Uang Keluar — di badan, di atas tabel -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 no-print">
+                <button onclick="openTxModal('masuk')" class="flex-1 inline-flex items-center justify-center gap-3 px-5 py-3.5 rounded-2xl text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md hover:shadow-lg transition-all ring-2 ring-emerald-200/70">
+                    <i data-lucide="arrow-down-circle" class="w-6 h-6 shrink-0"></i>
+                    <span class="flex flex-col items-start leading-tight text-left">
+                        <span class="text-[11px] font-semibold uppercase tracking-wide opacity-90">Uang Masuk</span>
+                        <span class="text-sm sm:text-base font-extrabold">Catat Penerimaan</span>
+                    </span>
+                </button>
+                <button onclick="openTxModal('keluar')" class="flex-1 inline-flex items-center justify-center gap-3 px-5 py-3.5 rounded-2xl text-sm font-bold bg-rose-600 hover:bg-rose-700 text-white shadow-md hover:shadow-lg transition-all ring-2 ring-rose-200/70">
+                    <i data-lucide="arrow-up-circle" class="w-6 h-6 shrink-0"></i>
+                    <span class="flex flex-col items-start leading-tight text-left">
+                        <span class="text-[11px] font-semibold uppercase tracking-wide opacity-90">Uang Keluar</span>
+                        <span class="text-sm sm:text-base font-extrabold">Catat Pengeluaran</span>
+                    </span>
+                </button>
+            </div>
+
             <div class="bg-white rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden">
                 <div class="p-4 sm:p-5 border-b border-slate-100 flex flex-col lg:flex-row lg:items-center justify-between gap-3">
                     <div>
